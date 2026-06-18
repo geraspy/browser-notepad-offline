@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <textarea id="note"></textarea>
+
+  <div class="controls">
+    <div class="undo-redo">
+      <button id="undoBtn" title="undo">←</button>
+      <button id="redoBtn" title="redo">→</button>
+    </div>
+    <button id="copyBtn" class="btn-fixed">copy</button>
+    <button id="clearBtn" class="btn-fixed">clear</button>
+    <button id="openBtn" class="btn-fixed">open note</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

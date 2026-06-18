@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Offline Notepad",
+  "version": "1.0",
+  "description": "A fast, resizable local notepad.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage", "windows"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

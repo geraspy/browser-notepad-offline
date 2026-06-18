@@ -1,0 +1,93 @@
+body {
+  font-family:'Source Sans 3',sans-serif;
+  margin:0;
+  padding:0;
+  width:300px;
+  position:relative;
+}
+
+#note {
+  width:100%;
+  border:none;
+  outline:none;
+  resize:none;
+  padding:10px;
+  font-size:14px;
+  box-sizing:border-box;
+  overflow:hidden;
+  white-space:pre-wrap;
+}
+
+.controls {
+  display:flex;
+  gap:3px;
+  padding:8px;
+  align-items:center;
+  flex-wrap: nowrap;
+}
+
+.undo-redo {
+  display:flex;
+  gap:2px;
+  flex-shrink: 0;
+}
+
+.undo-redo button {
+  width:22px;
+  height:22px;
+  padding:0;
+  border:none;
+  border-radius:5px;
+  font-size:11px;
+  font-weight:600;
+  cursor:pointer;
+  color:#fff;
+  background:#718096;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  flex-shrink: 0;
+}
+
+.undo-redo button:hover {
+  background:#5a6678;
+}
+
+.undo-redo button:disabled {
+  background:#cbd5e0;
+  cursor:not-allowed;
+}
+
+.btn-fixed {
+  padding:6px 8px;
+  border:none;
+  border-radius:5px;
+  font-size:11px;
+  font-weight:600;
+  cursor:pointer;
+  color:#fff;
+  white-space: nowrap;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+}
+
+#copyBtn {
+  background:#2b6cb0;
+  min-width: 75px;
+}
+#copyBtn:hover { background:#2c7edb; }
+
+#clearBtn {
+  background:#e53e3e;
+  min-width: 60px;
+}
+#clearBtn:hover { background:#ff4b4b; }
+
+#openBtn {
+  background:#4a5568;
+  min-width: 85px;
+  display: none;
+}
+#openBtn:hover { background:#5a6678; }

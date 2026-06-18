@@ -1,0 +1,64 @@
+
+
+# === AUTO-ADDED ===
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+# Virtual Environments
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+# PyCharm / JetBrains
+.idea/
+*.iml
+# VSCode
+.vscode/
+# OS junk
+.DS_Store
+Thumbs.db
+# Logs
+*.log
+logs/
+# Environment variables
+.env
+.env.*
+*.env
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+# PyTest
+.pytest_cache/
+# Coverage
+.coverage
+coverage.xml
+htmlcov/
+# Pip / Packaging
+pip-wheel-metadata/
+pip-cache/
+*.whl
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+# SQLite / Databases
+*.db
+*.sqlite3
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+# Cache directories
+.cache/
+__pypackages__/
+# Node
+node_modules/
+# Docker
+docker-compose.override.yml
