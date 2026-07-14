@@ -1,11 +1,15 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
+
+  <div class="topbar">
+    <select id="langSelect" title="Language"></select>
+  </div>
 
   <textarea id="note"></textarea>
 
@@ -19,6 +23,7 @@
     <button id="openBtn" class="btn-fixed">open note</button>
   </div>
 
+  <script src="i18n.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

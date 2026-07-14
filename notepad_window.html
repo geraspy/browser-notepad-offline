@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
@@ -65,6 +65,18 @@
       cursor:not-allowed;
     }
 
+    #langSelect {
+      font-family:inherit;
+      font-size:13px;
+      color:#4a5568;
+      background:#f7fafc;
+      border:1px solid #e2e8f0;
+      border-radius:6px;
+      padding:8px 6px;
+      cursor:pointer;
+      outline:none;
+    }
+
     button {
       flex:1;
       padding:10px 12px;
@@ -93,10 +105,12 @@
       <button id="undoBtn" title="undo">←</button>
       <button id="redoBtn" title="redo">→</button>
     </div>
+    <select id="langSelect" title="Language"></select>
     <button id="copyBtn">copy</button>
     <button id="clearBtn">clear</button>
   </div>
 
+  <script src="i18n.js"></script>
   <script src="notepad_window.js"></script>
 </body>
 </html>

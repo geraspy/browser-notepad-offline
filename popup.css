@@ -6,6 +6,30 @@ body {
   position:relative;
 }
 
+.topbar {
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  padding:6px 8px 0 8px;
+}
+
+#langSelect {
+  font-family:inherit;
+  font-size:11px;
+  color:#4a5568;
+  background:#f7fafc;
+  border:1px solid #e2e8f0;
+  border-radius:5px;
+  padding:2px 4px;
+  cursor:pointer;
+  outline:none;
+  max-width:130px;
+}
+
+#langSelect:hover {
+  border-color:#cbd5e0;
+}
+
 #note {
   width:100%;
   border:none;

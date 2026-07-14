@@ -7,6 +7,7 @@ const clearBtn = document.getElementById('clearBtn');
 const openBtn = document.getElementById('openBtn');
 const undoBtn = document.getElementById('undoBtn');
 const redoBtn = document.getElementById('redoBtn');
+const langSelect = document.getElementById('langSelect');
 
 const MAX_HEIGHT = 300;
 const MAX_HISTORY = 500;
@@ -17,8 +18,47 @@ let historyIndex = -1;
 let isUndoing = false;
 let debounceTimer = null;
 let lastSavedText = '';
+let currentLang = 'en';
 
-chrome.storage.local.get([NOTE_KEY, HISTORY_KEY, HISTORY_INDEX_KEY], (res) => {
+/* ---------- language ---------- */
+
+function populateLangOptions() {
+  langSelect.innerHTML = '';
+  Object.keys(LANG_NAMES).forEach((code) => {
+    const opt = document.createElement('option');
+    opt.value = code;
+    opt.textContent = LANG_NAMES[code];
+    langSelect.appendChild(opt);
+  });
+}
+
+function applyLang(lang) {
+  currentLang = TRANSLATIONS[lang] ? lang : 'en';
+  langSelect.value = currentLang;
+
+  copyBtn.textContent = t(currentLang, 'copy');
+  clearBtn.textContent = t(currentLang, 'clear');
+  openBtn.textContent = t(currentLang, 'open');
+  undoBtn.title = t(currentLang, 'undo');
+  redoBtn.title = t(currentLang, 'redo');
+  textarea.placeholder = t(currentLang, 'placeholder');
+
+  const rtl = RTL_LANGS.includes(currentLang);
+  document.documentElement.setAttribute('dir', rtl ? 'rtl' : 'ltr');
+}
+
+populateLangOptions();
+
+langSelect.addEventListener('change', () => {
+  chrome.storage.local.set({ [LANG_KEY]: langSelect.value });
+  applyLang(langSelect.value);
+});
+
+/* ---------- load state ---------- */
+
+chrome.storage.local.get([NOTE_KEY, HISTORY_KEY, HISTORY_INDEX_KEY, LANG_KEY], (res) => {
+  applyLang(res[LANG_KEY] || defaultLang());
+
   const text = res[NOTE_KEY] || '';
   textarea.value = text;
   lastSavedText = text;
@@ -41,6 +81,10 @@ chrome.storage.local.get([NOTE_KEY, HISTORY_KEY, HISTORY_INDEX_KEY], (res) => {
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area !== 'local') return;
 
+  if (changes[LANG_KEY]) {
+    applyLang(changes[LANG_KEY].newValue || 'en');
+  }
+
   if (changes[NOTE_KEY] && !isUndoing) {
     const newText = changes[NOTE_KEY].newValue || '';
     if (newText !== textarea.value) {
@@ -49,7 +93,6 @@ chrome.storage.onChanged.addListener((changes, area) => {
       checkSize();
     }
   }
-
 
   if (changes[HISTORY_KEY] || changes[HISTORY_INDEX_KEY]) {
     chrome.storage.local.get([HISTORY_KEY, HISTORY_INDEX_KEY], (res) => {
@@ -159,17 +202,13 @@ async function copyToClipboard() {
   try {
     await navigator.clipboard.writeText(textarea.value);
     const originalText = copyBtn.textContent;
-    copyBtn.textContent = 'Скопировано!';
-    setTimeout(() => {
-      copyBtn.textContent = originalText;
-    }, 1200);
+    copyBtn.textContent = t(currentLang, 'copied');
+    setTimeout(() => { copyBtn.textContent = originalText; }, 1200);
   } catch (err) {
     console.error('Clipboard error:', err);
     const originalText = copyBtn.textContent;
-    copyBtn.textContent = 'Error copy';
-    setTimeout(() => {
-      copyBtn.textContent = originalText;
-    }, 1500);
+    copyBtn.textContent = t(currentLang, 'errcopy');
+    setTimeout(() => { copyBtn.textContent = originalText; }, 1500);
   }
 }
 
